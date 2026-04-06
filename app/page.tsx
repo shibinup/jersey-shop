@@ -35,7 +35,31 @@ export default function Home() {
     title: "Minimalist Watch",
     price: 99.99,
     imageUrl: "", // test placeholder
+  },,
+  {
+    id: 2,
+    title: "Black Oversized Hoodie",
+    price: 49.99,
+    imageUrl: "https://images.unsplash.com/photo-1556821840-3a63f95609a7",
   },
+  {
+    id: 3,
+    title: "Blue Denim Jacket",
+    price: 79.99,
+    imageUrl: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246",
+  },
+  {
+    id: 4,
+    title: "Casual Sneakers",
+    price: 59.99,
+    imageUrl: "https://images.unsplash.com/photo-1542291026-7eec264c27ff",
+  },
+  {
+    id: 5,
+    title: "Minimalist Watch",
+    price: 99.99,
+    imageUrl: "", // test placeholder
+  }
 ];
 
 
@@ -57,8 +81,9 @@ export default function Home() {
       </div>
 
         {/* here start to show producs */}
-        <div className="flex gap-3 flex-wrap">
+        <div className="flex gap-3 flex-wrap lg:pl-20">
           {products.map((item) => (
+
         <ProductCard
           key={item.id}
           title={item.title}

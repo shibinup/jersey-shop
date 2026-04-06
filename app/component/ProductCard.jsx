@@ -7,7 +7,7 @@ export default function ProductCard({ title, price, imageUrl }) {
   const [isLiked, setIsLiked] = useState(false);
 
   return (
-    <div className="bg-white rounded-2xl shadow-md p-3 w-full max-w-[220px]">
+    <div className="bg-white rounded-2xl shadow-2xl p-3 w-full max-w-[220px] lg:max-w-[290px]">
       
       {/* Image Section */}
       <div className="relative">
