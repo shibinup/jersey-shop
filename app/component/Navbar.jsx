@@ -28,6 +28,27 @@ export default function Navbar() {
 
           {/* Right side Icons (Search, User, Cart) */}
           <div className="flex items-center gap-5 sm:gap-6 justify-end flex-shrink-0">
+
+           {/*home button i navbar*/}
+
+                <Link href="/">
+                  <button className="text-gray-900 hover:text-blue-600 transition-colors">
+                    <svg
+                      className="h-[22px] w-[22px]"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M3 10.5L12 3l9 7.5M5 10v10a1 1 0 001 1h4v-6h4v6h4a1 1 0 001-1V10"
+                      />
+                    </svg>
+                  </button>
+                </Link>
+                
             <button className="text-gray-900 hover:text-blue-600 transition-colors">
               <svg className="h-[22px] w-[22px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
