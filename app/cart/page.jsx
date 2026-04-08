@@ -1,5 +1,6 @@
 import CartProductCard from "../component/CartCard"
 import { SummaryCard } from "../component/DesktopSummaryCard"
+import { MobileCheckoutBar } from "../component/MobileCkeckoutBar"
 
 export default function Cartpage(){
 
@@ -43,8 +44,14 @@ export default function Cartpage(){
                         ))}
                 </div>
                 {/* below div is second div for summary card */}
+                {/*below div only see in desktop Desktop  */}
                 <div className="hidden lg:block pl-0 w-100 pt-10 pr-120 ">
-                        <SummaryCard/>
+                       <SummaryCard/>
+                </div>
+                        {/*below div only see in mobile */}
+                         {/*below div is for procees checkout*/}
+                <div className="md:hidden">
+                        <MobileCheckoutBar/>
                 </div>
 
             </div>
