@@ -9,7 +9,7 @@ export function MobileCheckoutBar({ total, onCheckout }) {
           <p className="text-lg font-semibold">₹{total}</p>
         </div>
 
-        <button
+        <button 
           onClick={onCheckout}
           className="bg-blue-600 text-white px-5 py-2 w-1/2 rounded-lg hover:bg-blue-700 transition"
         >
