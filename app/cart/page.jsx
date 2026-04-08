@@ -1,4 +1,5 @@
 import CartProductCard from "../component/CartCard"
+import { SummaryCard } from "../component/DesktopSummaryCard"
 
 export default function Cartpage(){
 
@@ -28,8 +29,10 @@ export default function Cartpage(){
             <div>
                 <h1 className="font-bold text-3xl text-center pt-3">MY SHOPPING CART</h1>
             </div>
-             {/* here shows the carts */}
-             <div className="flex flex-col gap-3">
+             {/* below div is parent div to flex */}
+            <div className="lg:flex lg:flex-row lg:pl-15 ">
+              {/* here shows the carts */}
+                 <div className="flex flex-col gap-3 flex-1  ">
                         {Cartproducts.map((item)=>(
 
                            <CartProductCard
@@ -38,7 +41,13 @@ export default function Cartpage(){
                             imageUrl= {item.imageUrl}
                            />
                         ))}
-             </div>
+                </div>
+                {/* below div is second div for summary card */}
+                <div className="hidden lg:block pl-0 w-100 pt-10 pr-120 ">
+                        <SummaryCard/>
+                </div>
+
+            </div>
         </div>
     )
 }

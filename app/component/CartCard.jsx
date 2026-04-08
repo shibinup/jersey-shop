@@ -33,11 +33,11 @@ export default function CartProductCard({
         <div className="flex items-center sm:mx-auto ">
           <div className="flex items-center border border-gray-300 rounded overflow-hidden h-9 bg-white shadow-sm hover:border-gray-400 transition w-24">
             <button className="px-3 hover:bg-gray-100 text-gray-600 transition flex-1 flex justify-center h-full items-center">
-              <p>minus</p>
+              <p>n</p>
             </button>
             <span className="px-2 font-bold text-sm text-gray-800">{quantity}</span>
             <button className="px-3 hover:bg-gray-100 text-gray-600 transition flex-1 flex justify-center h-full items-center">
-              <p>plus</p>
+             <p>p</p>
             </button>
           </div>
         </div>
@@ -53,10 +53,12 @@ export default function CartProductCard({
             <span className="sm:hidden text-xs text-gray-500 font-normal uppercase">Total</span>
             ${(price * quantity)}
           </div>
-          <button className="text-gray-400 hover:text-red-500 transition-colors p-1" aria-label="Remove item">
+            <div className='lg:pl-[100%]'>
+           <button className="text-gray-400 hover:text-red-500 transition-colors p-1" aria-label="Remove item">
             <span className="hidden sm:inline text-xs mr-1 uppercase font-bold text-gray-500 hover:text-red-500">Remove</span>
             <p>exx</p>
           </button>
+            </div>
         </div>
       </div>
     </div>
