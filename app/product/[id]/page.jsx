@@ -1,4 +1,5 @@
 import { Dummyproducts } from "../../dummydatas/dummyproducts";
+import ProductDetail from "./ProductDetail";
 export default async function SingleProduct({ params }) {
   const {id} = await params
   const response = await fetch(`http://localhost:3000/api/product/${id}`, {
@@ -7,8 +8,7 @@ export default async function SingleProduct({ params }) {
   const product = await response.json()
 
   return <div>
-    hayy {id}
-    
-   
+    {console.log("product is  ",id)}
+    <ProductDetail product={product}/>
   </div>;
 }
