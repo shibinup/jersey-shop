@@ -2,17 +2,19 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function ProductDetail({ product }) {
+     const router = useRouter()
   
   const [selectedImage, setSelectedImage] = useState(product.images[0]);
 
   return (
  <div >
-    <div className="hidden lg:flex lg:justify-end lg:pr-[20%] "><button className=" bg-red-500 hover:bg-red-800">intu</button></div>
+    <div className="hidden lg:flex lg:justify-end lg:pr-[20%] "><button onClick={() => router.back()} className=" bg-red-500 hover:bg-red-800">X</button></div>
        <div className="max-w-7xl mx-auto p-4 md:grid md:grid-cols-2 gap-8">
        {/* here go back int on mobile not in md+ */} 
-    <div className="md:hidden flex justify-end"><button className=" bg-red-500 hover:bg-red-800">intu</button></div>
+    <div className="md:hidden flex justify-end"><button  onClick={() => router.back()} className=" bg-red-500 hover:bg-red-800">X</button></div>
       {/* LEFT - Images */}
       <div>
         <img src={selectedImage} className="w-full rounded-xl" />
@@ -49,10 +51,6 @@ export default function ProductDetail({ product }) {
           </div>
         </div>
 
-        {/* Quantity */}
-        
-
-        
       </div>
 
     
