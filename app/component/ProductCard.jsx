@@ -2,12 +2,14 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
-export default function ProductCard({ title, price, imageUrl }) {
+export default function ProductCard({ title, price, imageUrl ,id}) {
   const [isLiked, setIsLiked] = useState(false);
+  const router = useRouter()
 
   return (
-    <div className="bg-white rounded-2xl shadow-2xl p-3 w-full max-w-[220px] lg:max-w-[290px]">
+    <div  onClick={() => router.push(`/product/${id}`)} className="bg-gray-300 hover:bg-gray-500 rounded-2xl shadow-2xl p-3 w-full max-w-[220px] lg:max-w-[290px]">
       
       {/* Image Section */}
       <div className="relative">

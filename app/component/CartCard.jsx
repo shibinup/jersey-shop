@@ -10,7 +10,7 @@ export default function CartProductCard({
    
 }) {
   return (
-    <div className="py-6  border-2 border-gray-300 flex flex-col sm:flex-row sm:items-center sm:justify-between lg:justify-start relative group lg:gap-30 lg:w-[70%] ">
+    <div className="py-6  border-2 bg-gray-200 hover:bg-gray-400 border-gray-300 flex flex-col sm:flex-row sm:items-center sm:justify-between lg:justify-start relative group lg:gap-30 lg:w-[70%] ">
         {/* here have first border*/}
       <div className="flex items-center sm:w-1/2 gap-4  lg:w-[25%] lg:pl-3 ">
         {/* here gave image inside below parent div*/}
@@ -23,7 +23,7 @@ export default function CartProductCard({
             {title}
           </h3>
           <div className="sm:hidden text-sm font-semibold text-gray-900 mt-1">
-            ${"praace"}
+            ${price}
           </div>
         </div>
       </div>
@@ -44,7 +44,7 @@ export default function CartProductCard({
 
         {/* Desktop Price */}
         <div className="hidden sm:block text-right font-medium text-gray-600 text-sm">
-          ${"thi desk price"}
+          ${price}
         </div>
 
         {/* Total & Remove */}
@@ -56,7 +56,7 @@ export default function CartProductCard({
             <div className='lg:pl-[100%]'>
            <button className="text-gray-400 hover:text-red-500 transition-colors p-1" aria-label="Remove item">
             <span className="hidden sm:inline text-xs mr-1 uppercase font-bold text-gray-500 hover:text-red-500">Remove</span>
-            <p>exx</p>
+            <p>X</p>
           </button>
             </div>
         </div>

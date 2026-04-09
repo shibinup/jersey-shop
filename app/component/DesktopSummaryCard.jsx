@@ -1,6 +1,6 @@
 export function SummaryCard({ subtotal, total, onCheckout }) {
   return (
-    <div className="hidden md:block w-120 max-w-sm bg-white shadow-lg rounded-2xl p-6 h-fit">
+    <div className="hidden md:block bg-gray-200 hover:bg-gray-300 w-120 max-w-sm bg-white shadow-lg rounded-2xl p-6 h-fit">
       
       <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
 

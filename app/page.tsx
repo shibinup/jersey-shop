@@ -66,6 +66,7 @@ export default function Home() {
           title={item.title}
           price={item.price}
           imageUrl={item.imageUrl}
+          id={item.id}
         />
       ))}
 

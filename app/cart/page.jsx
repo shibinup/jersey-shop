@@ -49,6 +49,8 @@ export default function Cartpage(){
                             key ={item.id}
                             title ={item.title}
                             imageUrl= {item.imageUrl}
+                            price={item.price}
+                            id ={item.id}
                            />
                         ))}
                 </div>
