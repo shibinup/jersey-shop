@@ -4,12 +4,15 @@
 import { useState } from "react";
 
 export default function ProductDetail({ product }) {
-  const [quantity, setQuantity] = useState(1);
+  
   const [selectedImage, setSelectedImage] = useState(product.images[0]);
 
   return (
-    <div className="max-w-7xl mx-auto p-4 md:grid md:grid-cols-2 gap-8">
-            
+ <div >
+    <div className="hidden lg:flex lg:justify-end lg:pr-[20%] "><button className=" bg-red-500 hover:bg-red-800">intu</button></div>
+       <div className="max-w-7xl mx-auto p-4 md:grid md:grid-cols-2 gap-8">
+       {/* here go back int on mobile not in md+ */} 
+    <div className="md:hidden flex justify-end"><button className=" bg-red-500 hover:bg-red-800">intu</button></div>
       {/* LEFT - Images */}
       <div>
         <img src={selectedImage} className="w-full rounded-xl" />
@@ -47,28 +50,13 @@ export default function ProductDetail({ product }) {
         </div>
 
         {/* Quantity */}
-        <div className="mt-4 flex items-center gap-3">
-          <button
-            onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-            className="border px-3"
-          >
-            -
-          </button>
-
-          <span>{quantity}</span>
-
-          <button
-            onClick={() => setQuantity((q) => q + 1)}
-            className="border px-3"
-          >
-            +
-          </button>
-        </div>
+        
 
         
       </div>
 
     
     </div>
+ </div>
   );
 }
