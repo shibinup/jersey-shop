@@ -3,8 +3,10 @@ import Navbar from './component/Navbar'
 import main_image from '../public/main_image.png'
 import  ProductCard from './component/ProductCard'
 
-export default function Home() {
 
+
+
+export default function Home() {
  const products = [
   {
     id: 1,
