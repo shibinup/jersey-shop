@@ -1,12 +1,22 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { use, useContext, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import {addToCart} from '../../services/cartServices'
+import { useAuth } from "../context/Authcontext";
+
+
 
 export default function ProductCard({ title, price, imageUrl ,id}) {
+
+  
+
+  const {user,loading} = useAuth()
+  
   const [isLiked, setIsLiked] = useState(false);
   const router = useRouter()
+   const product = { id, title, price, imageUrl }
 
   return (
     <div  onClick={() => router.push(`/product/${id}`)} className="bg-gray-300 hover:bg-gray-500 rounded-2xl shadow-2xl p-3 w-full max-w-[220px] lg:max-w-[290px]">
@@ -78,7 +88,13 @@ export default function ProductCard({ title, price, imageUrl ,id}) {
             ${price}
           </span>
 
-          <button className="bg-black text-white text-xs px-3 py-1 rounded-lg hover:bg-gray-800 transition">
+          <button   onClick={async (e) => {
+            e.stopPropagation(); 
+            // Stops the redirect to the product page
+            if (loading) return
+            
+             await addToCart(product,user);
+             }}   className="bg-black text-white text-xs px-3 py-1 rounded-lg hover:bg-gray-800 transition">
             ADD
           </button>
         </div>

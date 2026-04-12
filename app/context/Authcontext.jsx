@@ -7,22 +7,22 @@ import { app } from "../../lib/firebase";
 export const MyAuthContext = createContext();
 
 export const MyAuthProvider = ({ children }) => {
-  const [user, setUser] = useState(undefined); // undefined = loading
+  const [user, setUser] = useState(null);     // null = not logged in
+  const [loading, setLoading] = useState(true); // true = checking auth
 
   useEffect(() => {
     const auth = getAuth(app);
 
     const unsubscribe = onAuthStateChanged(auth, (u) => {
-      setUser(u);
+      setUser(u);        // user OR null
+      setLoading(false); // auth finished
     });
 
     return () => unsubscribe();
   }, []);
 
   return (
-   
-    <MyAuthContext.Provider value={{ user }}>
-       { console.log("auth context called")} 
+    <MyAuthContext.Provider value={{ user, loading }}>
       {children}
     </MyAuthContext.Provider>
   );
@@ -30,5 +30,5 @@ export const MyAuthProvider = ({ children }) => {
 
 // ✅ custom hook
 export const useAuth = () => {
-  return useContext(AuthContext);
+  return useContext(MyAuthContext);
 };
