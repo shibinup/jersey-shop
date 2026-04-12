@@ -1,10 +1,13 @@
 
+"use client"
 import CartProductCard from "../component/CartCard"
 import { SummaryCard } from "../component/DesktopSummaryCard"
 import { MobileCheckoutBar } from "../component/MobileCkeckoutBar"
+import { useRouter } from 'next/navigation'
+
 
 export default function Cartpage(){
-    
+    const router = useRouter()
     const Cartproducts = [
   {
     id: 1,
@@ -33,6 +36,12 @@ export default function Cartpage(){
   return acc + item.price * item.quantity;
 }, 0);
 
+   const onCheckout = ()=>{
+    if(Cartproducts.length>0){
+      router.push("/OrderFilling")
+    }
+   }
+
     return(
         <div>
              {/* here heading my shopping cart */}
@@ -57,12 +66,12 @@ export default function Cartpage(){
                 {/* below div is second div for summary card */}
                 {/*below div only see in desktop Desktop  */}
                 <div className="hidden lg:block pl-0 w-100 pt-10 pr-120 ">
-                       <SummaryCard subtotal={totalPrice} total={totalPrice}/>
+                       <SummaryCard subtotal={totalPrice} total={totalPrice} onCheckout={onCheckout}/>
                 </div>
                         {/*below div only see in mobile */}
                          {/*below div is for procees checkout*/}
                 <div className="md:hidden">
-                        <MobileCheckoutBar total={totalPrice}/>
+                        <MobileCheckoutBar total={totalPrice} onCheckout={onCheckout}/>
                 </div>
 
             </div>
