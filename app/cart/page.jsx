@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation'
 export default function Cartpage(){
     const router = useRouter()
     const Cartproducts = [
+      
   {
     id: 1,
     quantity:2,
