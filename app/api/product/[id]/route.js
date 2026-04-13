@@ -2,28 +2,39 @@
 // app/api/products/[id]/route.js
 import { NextResponse } from "next/server";
 import { Dummyproducts } from "../../../dummydatas/dummyproducts";
+import { getDocs,collection, query,where,qu } from "firebase/firestore";
+import { db } from "../../../../lib/firebase";
 
-export async function GET(request, { params }) {
+
+export async function GET(request,{ params }) {
+  
+  
   try {
     // 1. Await the dynamic parameters (Required in Next.js 15)
     const { id } = await params;
+    
 
-    // 2. Find the specific product
-    const product = Dummyproducts.find((p) => p.id === id);
+     //here taking referance of collection
+    const collectionRef = collection(db, "products");
+    //  Find the specific document
+    const q = query (collectionRef, where("id", "==", Number(id)));
+    //here accessing  document
+    const documents = await getDocs(q)
 
-    // 3. Handle "Not Found" case
-    if (!product) {
-      return NextResponse.json(
-        { message: "Product not found" }, 
-        { status: 404 }
-      );
-    }
-
-    // 4. Return the data as JSON (Status 200 is default)
-    return NextResponse.json(product);
+      // Check if exactly one document exists
+     if (!documents.empty) {
+      
+       const docData = documents.docs[0].data(); // Access the data
+       
+       return NextResponse.json(docData);
+    } else {
+    
+    return  false;
+  }
     
   } catch (error) {
     // Handle unexpected server errors
+   
     return NextResponse.json(
       { message: "Internal Server Error" }, 
       { status: 500 }

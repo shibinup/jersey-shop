@@ -1,14 +1,28 @@
+"use client"
 import { Dummyproducts } from "../../dummydatas/dummyproducts";
 import ProductDetail from "./ProductDetail";
-export default async function SingleProduct({ params }) {
-  const {id} = await params
-  const response = await fetch(`http://localhost:3000/api/product/${id}`, {
-    cache: "no-store", //important for fresh data
-  })
-  const product = await response.json()
+import {useAuth} from '../../context/Authcontext'
+import { useState ,useEffect} from "react";
+export default  function SingleProduct({ params }) {
+  const {user,loading} = useAuth() 
+  
+  const[product,setProduct] = useState(null)
+  
+  useEffect(() => {
+    async function fetchData() {
+      const { id } = await params; // params is a promise in newer Next.js versions
+      const response = await fetch(`http://localhost:3000/api/product/${id}`);
+      const data = await response.json();
+      setProduct(data)
+    ;
+    }
+    fetchData();
+  }, [params]);
+  
+    if(loading) return <p>loading...</p>
+    if (!product) return <p>product loading...</p>
 
-  return <div>
-    {console.log("product is  ",id)}
+    return <div>
     <ProductDetail product={product}/>
-  </div>;
+    </div>;
 }

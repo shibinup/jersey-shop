@@ -8,9 +8,10 @@ import  ProductCard from './component/ProductCard'
 
 
 export default async function Home() {
+ console.log("Firebase API Key is:", process.env.NEXT_PUBLIC_FIREBASE_API_KEY)
 
-const res = await fetch("http://localhost:3000/api/product", {
-  cache: "no-store", // important for fresh data
+const res = await fetch(`${process.env.NEXT_PUBLIC_API_KEY}/api/product`, { 
+  cache: "no-store" 
 });
 
 const products = await res.json();

@@ -19,7 +19,7 @@ export default function ProductCard({ title, price, imageUrl ,id}) {
    const product = { id, title, price, imageUrl }
 
   return (
-    <div  onClick={() => router.push(`/product/${id}`)} className="bg-gray-300 hover:bg-gray-500 rounded-2xl shadow-2xl p-3 w-full max-w-[220px] lg:max-w-[290px]">
+    <div  onClick={() =>  router.push(`/product/${id}`)} className="bg-gray-300 hover:bg-gray-500 rounded-2xl shadow-2xl p-3 w-full max-w-[220px] lg:max-w-[290px]">
       
       {/* Image Section */}
       <div className="relative">
