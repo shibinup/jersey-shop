@@ -55,7 +55,7 @@ export default function ProductCard({ title, price, imageUrl ,id}) {
         <div className="relative w-full h-[180px] flex items-center justify-center bg-gray-100 rounded-xl overflow-hidden">
           {imageUrl ? (
             <Image
-              src={imageUrl}
+              src={imageUrl?.[0]}
               alt={title}
               fill
               className="object-contain"

@@ -1,11 +1,18 @@
 import { collection, getDocs, query } from "firebase/firestore";
 import { db } from "@/lib/firebase";
-export async function Fetching(){
+import { NextResponse } from "next/server";
+export async function GET(){
     console.log("fetching function is called ")
     try {
         console.log("try from fetching function is called")
             const resSnapshot = await getDocs(collection(db, "products"))
-            return resSnapshot.docs.map(item=>({id:item.id,...item.data()}))
+           // return resSnapshot.docs.map(item=>({id:item.id,...item.data()}))
+           const products = resSnapshot.docs.map(doc => ({
+               id: doc.id,
+             ...doc.data()
+             }));
+       
+              return NextResponse.json(products)
             } 
 
     catch (error) {

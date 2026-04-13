@@ -9,12 +9,12 @@ export default function AddProductForm() {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
-  const [images, setImages] = useState([]); // ✅ now proper array
+  const [images, setImages] = useState([]); // 
   const [loading, setLoading] = useState(false);
 
   // 🔹 Upload to ImgBB
   const uploadToImgBB = async (file) => {
-    const apiKey ="4867071fc8e5a6cc508ee9ba5b1df35a"; // ⚠️ replace with your key
+    const apiKey ="4867071fc8e5a6cc508ee9ba5b1df35a"; // 
 
     const formData = new FormData();
     formData.append("image", file);
