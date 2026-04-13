@@ -2,14 +2,15 @@ import Image from "next/image";
 import Navbar from './component/Navbar'
 import main_image from '../public/main_image.png'
 import  ProductCard from './component/ProductCard'
-import {Fetching} from '../app/dummyapi/first'
+import {Fetching} from '../app/api/product/route'
 
 
 
 
-export default function Home() {
+export default async function Home() {
 
-  Fetching()
+const pro = await Fetching()
+console.log("shibu pro is ",pro)
  const products = [
   {
     id: 1,
@@ -46,6 +47,8 @@ export default function Home() {
 
 
   return (
+
+
    <div>
        
       {/* div for the image  */}
