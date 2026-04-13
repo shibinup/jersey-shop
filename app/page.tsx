@@ -2,11 +2,14 @@ import Image from "next/image";
 import Navbar from './component/Navbar'
 import main_image from '../public/main_image.png'
 import  ProductCard from './component/ProductCard'
+import {Fetching} from '../app/dummyapi/first'
 
 
 
 
 export default function Home() {
+
+  Fetching()
  const products = [
   {
     id: 1,
