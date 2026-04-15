@@ -16,6 +16,7 @@ export default function SignupPage() {
     setLoading(true);
 
     const res = await signupUser({ email, password });
+  
 
     if (res.success) {
       router.push("/");
@@ -27,19 +28,25 @@ export default function SignupPage() {
   };
 
   // ✅ Google handler
-  const handleGoogleSignup = async () => {
-    setLoading(true);
+ const handleGoogleSignup = async () => {
+  setLoading(true);
 
+  try {
     const res = await signInWithGoogle();
+      
+    const uid = res.user?.uid;
+    console.log("User UID:", uid);
 
-    if (res.success) {
+    if (res.user) {
       router.push("/");
-    } else {
-      alert(res.error);
     }
 
-    setLoading(false);
-  };
+  } catch (error) {
+    alert(error.message);
+  }
+
+  setLoading(false);
+};
 
   return (
     <div className="flex justify-center items-center min-h-screen">

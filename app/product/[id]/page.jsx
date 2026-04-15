@@ -11,7 +11,8 @@ export default  function SingleProduct({ params }) {
   useEffect(() => {
     async function fetchData() {
       const { id } = await params; // params is a promise in newer Next.js versions
-      const response = await fetch(`http://localhost:3000/api/product/${id}`);
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_KEY}/api/product/${id}`);
+
       const data = await response.json();
       setProduct(data)
     ;

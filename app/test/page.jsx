@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { signInWithGoogle, logoutUser } from "@/lib/auth";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { app } from "../../lib/firebase";
+import {SignupManagement} from "./serv"
 
 export default function AuthPage() {
   const [user, setUser] = useState(undefined);
@@ -48,7 +49,7 @@ export default function AuthPage() {
       <h2 className="text-xl font-bold">Sign in to continue</h2>
 
       <button
-        onClick={signInWithGoogle}
+        onClick={SignupManagement}
         className="border px-4 py-2 rounded flex items-center gap-2"
       >
         Continue with Google
