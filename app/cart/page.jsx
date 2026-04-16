@@ -10,7 +10,7 @@ import { useEffect, useState } from "react"
 export default function Cartpage(){
 
 
-  const[product,setProducts] = useState([])
+  const[products,setProducts] = useState([])
   const{user,loading} = useAuth()
  useEffect(() => {
 
@@ -31,7 +31,7 @@ export default function Cartpage(){
         
        setProducts(data.items|| []);
        console.log("data is ",data)
-        console.log("products is ",product)
+        console.log("products is ",products)
 
       } catch (err) {
         console.error("Error fetching cart:", err);
@@ -45,8 +45,8 @@ export default function Cartpage(){
   }, [user, loading])
 
   useEffect(() => {
-  console.log("products updated:", product);
-}, [product]);
+  console.log("products updated:", products);
+}, [products]);
 
 
     const router = useRouter()
@@ -75,9 +75,11 @@ export default function Cartpage(){
   },]
 
   {/* here adding total price */}
-  const totalPrice = Cartproducts.reduce((acc, item) => {
+  const totalPrice = products.reduce((acc, item) => {
   return acc + item.price * item.quantity;
 }, 0);
+
+
 
    const onCheckout = ()=>{
     if(Cartproducts.length>0){
