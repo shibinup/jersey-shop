@@ -4,9 +4,51 @@ import CartProductCard from "../component/CartCard"
 import { SummaryCard } from "../component/DesktopSummaryCard"
 import { MobileCheckoutBar } from "../component/MobileCkeckoutBar"
 import { useRouter } from 'next/navigation'
-
+import {useAuth} from '../context/Authcontext'
+import { useEffect, useState } from "react"
 
 export default function Cartpage(){
+
+
+  const[product,setProducts] = useState([])
+  const{user,loading} = useAuth()
+ useEffect(() => {
+
+    const fetchCart = async () => {
+      let userId;
+
+      if (user) {
+        userId = user.uid;
+      } else {
+        userId = localStorage.getItem("guestId");
+      }
+
+      if (!userId) return;
+
+      try {
+        const res = await fetch(`/cart/api/${userId}`)
+        const data = await res.json();
+        
+       setProducts(data.items|| []);
+       console.log("data is ",data)
+        console.log("products is ",product)
+
+      } catch (err) {
+        console.error("Error fetching cart:", err);
+      }
+    };
+
+    if (!loading) {
+      fetchCart();
+    }
+
+  }, [user, loading])
+
+  useEffect(() => {
+  console.log("products updated:", product);
+}, [product]);
+
+
     const router = useRouter()
     const Cartproducts = [
       
