@@ -54,3 +54,31 @@ export const addToCart = async (product, user) => {
     return { success: false, error: error.message };
   }
 };
+
+export const RemoveFromCart = async(user,productId) => { 
+  console.log("shibuu remove from cart called ") 
+  try { 
+    console.log("try block from cart called ") 
+    const userId = await user?.uid|| getGuestId(); 
+    const cartRef = doc(db, "carts", userId); 
+
+    const cartSnap = await getDoc(cartRef); 
+    if (cartSnap.exists()) { 
+      let items = cartSnap.data().items 
+      const existingIndex = items.findIndex((i) => i.id === Number(productId)) 
+      
+      if (existingIndex === -1) { 
+        console.log("Item not found in cart"); 
+        return; 
+      } 
+      
+      items.splice(existingIndex, 1); 
+
+      await updateDoc(cartRef, { items: items }); 
+      console.log("Item removed successfully"); 
+    } 
+  } catch (error) { 
+    console.log("error from remove from cart called and error is ",error) 
+  } 
+}; // 
+

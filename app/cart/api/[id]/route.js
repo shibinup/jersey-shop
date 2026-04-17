@@ -26,3 +26,4 @@ export async function GET(req, { params }) {
     return NextResponse.json({ error: "Server error" });
   }
 }
+

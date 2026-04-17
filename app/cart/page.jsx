@@ -6,12 +6,18 @@ import { MobileCheckoutBar } from "../component/MobileCkeckoutBar"
 import { useRouter } from 'next/navigation'
 import {useAuth} from '../context/Authcontext'
 import { useEffect, useState } from "react"
+import { RemoveFromCart } from "../../services/cartServices"
 
 export default function Cartpage(){
 
 
   const[products,setProducts] = useState([])
   const{user,loading} = useAuth()
+
+
+  const onRemove =async(user,id)=>{
+     await RemoveFromCart(user,id)
+  }
  useEffect(() => {
 
     const fetchCart = async () => {
@@ -42,7 +48,7 @@ export default function Cartpage(){
       fetchCart();
     }
 
-  }, [user, loading])
+  }, [user, loading,onRemove])
 
   useEffect(() => {
   console.log("products updated:", products);
@@ -107,11 +113,13 @@ export default function Cartpage(){
                                    
                                    <CartProductCard
                                     key ={item.id}
+                                    user = {user}
                                     title ={item.title}
                                     imageUrl= {item.imageUrl}
                                     price={item.price}
                                     quantity={item.quantity}
                                     id ={item.id}
+                                    onRemove ={onRemove}
                                    />
                                 ))}
                         </div>

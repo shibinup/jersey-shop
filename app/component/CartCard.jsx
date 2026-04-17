@@ -1,12 +1,16 @@
 import React from 'react';
 import Image from "next/image";
+import{ RemoveFromCart} from '../../services/cartServices'
 
 
 export default function CartProductCard({ 
+  id,
   title, 
   price, 
   quantity , 
-  imageUrl
+  imageUrl,
+  user,
+  onRemove
    
 }) {
   return (
@@ -56,7 +60,7 @@ export default function CartProductCard({
             <div className='lg:pl-[100%]'>
            <button className="text-gray-400 hover:text-red-500 transition-colors p-1" aria-label="Remove item">
             <span className="hidden sm:inline text-xs mr-1 uppercase font-bold text-gray-500 hover:text-red-500">Remove</span>
-            <p>X</p>
+            <p onClick={() => onRemove(user,id)}>X</p>
           </button>
             </div>
         </div>
