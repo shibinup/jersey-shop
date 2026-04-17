@@ -87,39 +87,47 @@ export default function Cartpage(){
     }
    }
 
-    return(
-        <div>
-             {/* here heading my shopping cart */}
-            <div>
-                <h1 className="font-bold text-3xl text-center pt-3">MY SHOPPING CART</h1>
-            </div>
-             {/* below div is parent div to flex */}
-            <div className="lg:flex lg:flex-row lg:pl-15 ">
-              {/* here shows the carts */}
-                 <div className="flex flex-col gap-3 flex-1  ">
-                        {Cartproducts.map((item)=>(
-                           
-                           <CartProductCard
-                            key ={item.id}
-                            title ={item.title}
-                            imageUrl= {item.imageUrl}
-                            price={item.price}
-                            id ={item.id}
-                           />
-                        ))}
-                </div>
-                {/* below div is second div for summary card */}
-                {/*below div only see in desktop Desktop  */}
-                <div className="hidden lg:block pl-0 w-100 pt-10 pr-120 ">
-                       <SummaryCard subtotal={totalPrice} total={totalPrice} onCheckout={onCheckout}/>
-                </div>
-                        {/*below div only see in mobile */}
-                         {/*below div is for procees checkout*/}
-                <div className="md:hidden">
-                        <MobileCheckoutBar total={totalPrice} onCheckout={onCheckout}/>
-                </div>
+   return (
+  <div>
+    <div>
+      <h1 className="font-bold text-3xl text-center pt-3">
+        MY SHOPPING CART
+      </h1>
+    </div>
 
-            </div>
-        </div>
-    )
+    {loading ? (
+      <div>Loading...</div>
+    ) : products.length === 0 ? (
+      <div>Empty cart</div>
+    ) : (
+        <div className="lg:flex lg:flex-row lg:pl-15 ">
+                      {/* here shows the carts */}
+                         <div className="flex flex-col gap-3 flex-1  ">
+                                {products.map((item)=>(
+                                   
+                                   <CartProductCard
+                                    key ={item.id}
+                                    title ={item.title}
+                                    imageUrl= {item.imageUrl}
+                                    price={item.price}
+                                    quantity={item.quantity}
+                                    id ={item.id}
+                                   />
+                                ))}
+                        </div>
+                        {/* below div is second div for summary card */}
+                        {/*below div only see in desktop Desktop  */}
+                        <div className="hidden lg:block pl-0 w-100 pt-10 pr-120 ">
+                               <SummaryCard subtotal={totalPrice} total={totalPrice} onCheckout={onCheckout}/>
+                        </div>
+                                {/*below div only see in mobile */}
+                                 {/*below div is for procees checkout*/}
+                        <div className="md:hidden">
+                                <MobileCheckoutBar total={totalPrice} onCheckout={onCheckout}/>
+                        </div>
+        
+                    </div>
+    )}
+  </div>
+);
 }

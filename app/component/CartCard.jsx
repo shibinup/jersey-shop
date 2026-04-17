@@ -5,7 +5,7 @@ import Image from "next/image";
 export default function CartProductCard({ 
   title, 
   price, 
-  quantity = 1, 
+  quantity , 
   imageUrl
    
 }) {
@@ -15,7 +15,7 @@ export default function CartProductCard({
       <div className="flex items-center sm:w-1/2 gap-4  lg:w-[25%] lg:pl-3 ">
         {/* here gave image inside below parent div*/}
         <div className="relative w-30 h-30 flex items-center justify-center rounded-md border border-gray-100 overflow-hidden shadow-sm">
-            <Image src={imageUrl} alt='none' fill />
+            <Image src={imageUrl[0]} alt='none' fill />
         </div>
         {/* image parent div and image is finishing abovr*/}
         <div>
