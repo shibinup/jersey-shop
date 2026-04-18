@@ -35,7 +35,7 @@ export default function SignupPage() {
     const res = await signInWithGoogle();
       
     const uid = res.user?.uid;
-    console.log("User UID:", uid);
+   
 
     if (res.user) {
       router.push("/");

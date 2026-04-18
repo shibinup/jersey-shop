@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 export async function GET(){
     
     try {
-        console.log("try from fetching function is called")
+        
             const resSnapshot = await getDocs(collection(db, "products"))
            // return resSnapshot.docs.map(item=>({id:item.id,...item.data()}))
              const products = resSnapshot.docs.map(doc => ({
@@ -17,6 +17,6 @@ export async function GET(){
 
     catch (error) {
         
-        console.log(error.message)
+       // console.log(error.message)
     }
 }

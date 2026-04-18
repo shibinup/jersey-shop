@@ -36,11 +36,9 @@ export default function Cartpage(){
         const data = await res.json();
         
        setProducts(data.items|| []);
-       console.log("data is ",data)
-        console.log("products is ",products)
-
+       
       } catch (err) {
-        console.error("Error fetching cart:", err);
+        //console.error("Error fetching cart:", err);
       }
     };
 
@@ -51,35 +49,12 @@ export default function Cartpage(){
   }, [user, loading,onRemove])
 
   useEffect(() => {
-  console.log("products updated:", products);
+  //console.log("products updated:", products);
 }, [products]);
 
 
     const router = useRouter()
-    const Cartproducts = [
-      
-  {
-    id: 1,
-    quantity:2,
-    title: "Classic White T-Shirt",
-    price: 19.99,
-    imageUrl: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab",
-  },
-  {
-    id: 2,
-    title: "Black Oversized Hoodie",
-    quantity:5,
-    price: 49.99,
-    imageUrl: "https://images.unsplash.com/photo-1556821840-3a63f95609a7",
-  },
-  {
-    id: 3,
-    quantity:3,
-    title: "Blue Denim Jacket",
-    price: 79.99,
-    imageUrl: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246",
-  },]
-
+   
   {/* here adding total price */}
   const totalPrice = products.reduce((acc, item) => {
   return acc + item.price * item.quantity;
@@ -88,8 +63,11 @@ export default function Cartpage(){
 
 
    const onCheckout = ()=>{
-    if(Cartproducts.length>0){
+    if(products.length>0){
       router.push("/OrderFilling")
+    }
+    else{
+      alert("empty cart")
     }
    }
 
