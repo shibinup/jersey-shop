@@ -17,6 +17,8 @@ export default function Cartpage(){
 
   const onRemove =async(user,id)=>{
      await RemoveFromCart(user,id)
+     setProducts((prev) => prev.filter((item) => item.id !== id));
+
   }
  useEffect(() => {
 
@@ -46,7 +48,7 @@ export default function Cartpage(){
       fetchCart();
     }
 
-  }, [user, loading,onRemove])
+  }, [user, loading])
 
   useEffect(() => {
   //console.log("products updated:", products);
