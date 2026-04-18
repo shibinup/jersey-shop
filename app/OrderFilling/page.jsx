@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { useAuth } from '../context/Authcontext';
-
+import { useRouter } from 'next/navigation'
 export default function CheckoutForm() {
   const { user, loading } = useAuth();
-  
+  const router = useRouter();
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -155,7 +155,7 @@ export default function CheckoutForm() {
             </div>
           </div>
 
-          <button
+          <button onClick={()=>{router.push("/final")}}
             type="submit"
             className="w-full bg-black text-white py-3 rounded-lg hover:bg-gray-800 transition font-semibold"
           >
