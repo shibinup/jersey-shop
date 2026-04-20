@@ -1,7 +1,7 @@
 "use client";
 
 export default function ThankYouPage() {
-  const phone = "919746991907";
+  const phone = "919188070772";
 
   const message = "Hi, I visited your prototype website. Here is my feedback:";
   const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
