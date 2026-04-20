@@ -3,27 +3,31 @@ import { Dummyproducts } from "../../dummydatas/dummyproducts";
 import ProductDetail from "./ProductDetail";
 import {useAuth} from '../../context/Authcontext'
 import { useState ,useEffect} from "react";
-export default  function SingleProduct({ params }) {
+
+export default function SingleProduct({ params }) {
   const {user,loading} = useAuth() 
   
   const[product,setProduct] = useState(null)
   
   useEffect(() => {
     async function fetchData() {
-      const { id } = await params; // params is a promise in newer Next.js versions
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/product/${id}`);
+      const { id } = await params;
+      
+      // Changed: Just use the relative path starting with /
+      const response = await fetch(`/api/product/${id}`);
 
       const data = await response.json();
-      setProduct(data)
-    ;
+      setProduct(data);
     }
     fetchData();
   }, [params]);
   
-    if(loading) return <p>loading...</p>
-    if (!product) return <p>product loading...</p>
+  if (loading) return <p>loading...</p>
+  if (!product) return <p>product loading...</p>
 
-    return <div>
-    <ProductDetail product={product}/>
-    </div>;
-}
+  return (
+    <div>
+       <ProductDetail product={product}/>
+    </div>
+  );
+} 

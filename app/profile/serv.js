@@ -4,8 +4,14 @@ import { db } from "../../lib/firebase";
 export  async function SignupManagement(){
     
         const user  = await signInWithGoogle()
-        
-        const id = user.user.uid
+        let id
+        if(user.success){
+          console.log("user is ",user)
+           id = user.user.uid
+        } else{
+          return
+        }
+
          
          MergeCart(id)
 }
