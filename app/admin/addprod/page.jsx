@@ -14,7 +14,7 @@ export default function AddProductForm() {
 
   // 🔹 Upload to ImgBB
   const uploadToImgBB = async (file) => {
-    const apiKey =process.env.IMGBB_API_KEY; // 
+    const apiKey =process.env.NEXT_PUBLIC_IMGBB_API_KEY; // 
 
     const formData = new FormData();
     formData.append("image", file);

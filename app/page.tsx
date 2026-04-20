@@ -9,7 +9,7 @@ import  ProductCard from './component/ProductCard'
 
 export default async function Home() {
 
-const res = await fetch(`${process.env.NEXT_PUBLIC_API_KEY}/api/product`, { 
+const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/product`, { 
   cache: "no-store" 
 });
 
