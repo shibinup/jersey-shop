@@ -19,8 +19,9 @@ export  async function SignupManagement(){
 export async function MergeCart(id){
     try {
         
-     
+     if (typeof window === "undefined") return;
     const userUid = id
+     
     const guestid = localStorage.getItem("guestId")
     if (!guestid) return;
      // if hav eguest id 
