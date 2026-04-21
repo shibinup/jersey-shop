@@ -18,9 +18,16 @@ export default function CartProductCard({
         {/* here have first border*/}
       <div className="flex items-center sm:w-1/2 gap-4  lg:w-[25%] lg:pl-3 ">
         {/* here gave image inside below parent div*/}
-        <div className="relative w-30 h-30 flex items-center justify-center rounded-md border border-gray-100 overflow-hidden shadow-sm">
-            <Image src={imageUrl[0]} alt='none' fill />
-        </div>
+      <div className="relative w-30 h-30 flex items-center justify-center rounded-md border border-gray-100 overflow-hidden shadow-sm">
+    <Image 
+      src={imageUrl[0]} 
+      alt='image' 
+      fill 
+      sizes="120px" 
+      className="object-cover"
+      priority
+    />
+</div>
         {/* image parent div and image is finishing abovr*/}
         <div>
           <h3 className="font-bold text-gray-900 text-[15px] sm:text-base leading-snug hover:text-blue-600 cursor-pointer transition">
