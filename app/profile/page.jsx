@@ -10,6 +10,7 @@ import { MergeCart } from "./serv";
 
 export default function AuthPage() {
   const [user, setUser] = useState(undefined);
+  const[loading,setLoading] = useState(true)
   const handleSignIn = async () => {
     try {
             const Newuser  = await signInWithGoogle()
@@ -36,6 +37,7 @@ export default function AuthPage() {
 
     const unsub = onAuthStateChanged(auth, (u) => {
       setUser(u);
+      setLoading(false)
 
     });
 
@@ -43,12 +45,12 @@ export default function AuthPage() {
   }, []);
 
   // ⏳ Loading state
-  if (user ===undefined) {
+  if (loading) {
     return <div className="text-center mt-10">Loading...</div>;
   }
 
   // 🔐 If user logged in
-  if (user) {
+  if (user.email) {
     return (
       <div className="flex flex-col items-center mt-20 gap-4">
         <h2 className="text-xl font-bold">Welcome</h2>
