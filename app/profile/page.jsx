@@ -50,7 +50,7 @@ export default function AuthPage() {
   }
 
   // 🔐 If user logged in
-  if (user.email) {
+  if (user) {
     return (
       <div className="flex flex-col items-center mt-20 gap-4">
         <h2 className="text-xl font-bold">Welcome</h2>
