@@ -5,12 +5,11 @@ import { useEffect, useState } from "react";
 import { signInWithGoogle, logoutUser } from "@/lib/auth";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { app } from "../../lib/firebase";
-import {SignupManagement} from "./serv"
 import { MergeCart } from "./serv";
 
 
 export default function AuthPage() {
-  const [user, setUser] = useState(undefined);
+  const [user, setUser] = useState(null);
   const handleSignIn = async () => {
     try {
             const Newuser  = await signInWithGoogle()
@@ -18,12 +17,13 @@ export default function AuthPage() {
               if(Newuser.success){
                 console.log("user is ",Newuser)
                  id = Newuser.user.uid
+                 await MergeCart(id);
               } else{
                 return
               }
       
                
-               await MergeCart(id);
+               
     } catch (error) {
       console.error("error", error);
       ;
@@ -36,13 +36,14 @@ export default function AuthPage() {
 
     const unsub = onAuthStateChanged(auth, (u) => {
       setUser(u);
+
     });
 
     return () => unsub();
   }, []);
 
   // ⏳ Loading state
-  if (user === undefined) {
+  if (user === null) {
     return <div className="text-center mt-10">Loading...</div>;
   }
 
@@ -71,7 +72,7 @@ export default function AuthPage() {
 
       <button
         onClick={handleSignIn}
-        className="border px-4 py-2 rounded flex items-center gap-2"
+        className="border px-4 py-2 rounded flex items-center gap-2 hover:bg-gray-400"
       >
         Continue with Google
       </button>
