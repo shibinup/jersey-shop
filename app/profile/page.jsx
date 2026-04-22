@@ -1,14 +1,34 @@
 "use client";
-export const dynamic = "force-dynamic";
+
 
 import { useEffect, useState } from "react";
 import { signInWithGoogle, logoutUser } from "@/lib/auth";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { app } from "../../lib/firebase";
 import {SignupManagement} from "./serv"
+import { MergeCart } from "./serv";
+
 
 export default function AuthPage() {
   const [user, setUser] = useState(undefined);
+  const handleSignIn = async () => {
+    try {
+            const Newuser  = await signInWithGoogle()
+              let id
+              if(Newuser.success){
+                console.log("user is ",Newuser)
+                 id = Newuser.user.uid
+              } else{
+                return
+              }
+      
+               
+               await MergeCart(id);
+    } catch (error) {
+      console.error("error", error);
+      ;
+    }
+  };
 
   // ✅ Listen to auth state
   useEffect(() => {
@@ -50,7 +70,7 @@ export default function AuthPage() {
       <h2 className="text-xl font-bold">Sign in to continue</h2>
 
       <button
-        onClick={SignupManagement}
+        onClick={handleSignIn}
         className="border px-4 py-2 rounded flex items-center gap-2"
       >
         Continue with Google
