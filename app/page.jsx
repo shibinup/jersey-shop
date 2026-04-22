@@ -2,6 +2,7 @@ import Image from "next/image";
 import Navbar from './component/Navbar';
 import main_image from '../public/main_image.png';
 import ProductCard from './component/ProductCard';
+import { adminDb} from '@/lib/firebaseAdmin'
 
 // 1. Import Firebase Firestore functions and your db instance
 import { collection, getDocs } from "firebase/firestore";
@@ -15,7 +16,7 @@ export default async function Home() {
   // 3. Fetch data directly from Firebase instead of making an HTTP fetch to your API
   let products = [];
   try {
-    const resSnapshot = await getDocs(collection(db, "products"));
+    const resSnapshot = await await adminDb.collection("products").get()
     products = resSnapshot.docs.map(doc => ({
       id: doc.id,
       ...doc.data()
