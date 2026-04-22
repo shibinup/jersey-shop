@@ -12,6 +12,7 @@ export default function AuthPage() {
   const [user, setUser] = useState(undefined);
   const[loading,setLoading] = useState(true)
   const handleSignIn = async () => {
+    console.log("button clicked")
     try {
             const Newuser  = await signInWithGoogle()
               let id
