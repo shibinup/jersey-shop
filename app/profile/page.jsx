@@ -9,7 +9,7 @@ import { MergeCart } from "./serv";
 
 
 export default function AuthPage() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(undefined);
   const handleSignIn = async () => {
     try {
             const Newuser  = await signInWithGoogle()
@@ -43,7 +43,7 @@ export default function AuthPage() {
   }, []);
 
   // ⏳ Loading state
-  if (user === null) {
+  if (user ===undefined) {
     return <div className="text-center mt-10">Loading...</div>;
   }
 
