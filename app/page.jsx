@@ -3,6 +3,7 @@ import Navbar from './component/Navbar';
 import main_image from '../public/main_image.png';
 import ProductCard from './component/ProductCard';
 import { adminDb} from '@/lib/firebaseAdmin'
+import PriceFilter from '../app/component/Pricefilter'
 
 // 1. Import Firebase Firestore functions and your db instance
 import { collection, getDocs } from "firebase/firestore";
@@ -30,6 +31,9 @@ export default async function Home() {
       {/* div for the image  */}
       <div className="">
          <Image className="h-70 lg:h-full w-full" src={main_image} alt="desc" priority/>
+      </div>
+      <div>
+        <PriceFilter/>
       </div>
 
       {/* div to headinf top sellers*/}
