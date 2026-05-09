@@ -38,7 +38,7 @@ export default async function Home() {
       </div>
 
       {/* here start to show producs */}
-      <div className="flex gap-3 flex-wrap lg:pl-20">
+      <div className="flex gap-1 flex-wrap lg:pl-20">
         {products.map((item) => (
           <ProductCard
             key={item.id}
