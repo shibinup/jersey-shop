@@ -32,10 +32,6 @@ export default async function Home() {
       <div className="">
          <Image className="h-70 lg:h-full w-full" src={main_image} alt="desc" priority/>
       </div>
-      <div>
-        <PriceFilter/>
-      </div>
-
       {/* div to headinf top sellers*/}
       <div>
             <h1 className="text-2xl font-extrabold text-black text-center" >TOP SELLERS</h1>

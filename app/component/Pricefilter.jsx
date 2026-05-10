@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from "react";
-
+import { useRouter } from 'next/navigation'
 export default function Filters() {
   const [price, setPrice] = useState(400);
   const [selectedColor, setSelectedColor] = useState(null);
 
   const colors = ["Blue", "White", "Yellow", "Black"];
+  const router=useRouter()
 
   return (
     <div className="w-full max-w-sm bg-white p-5 rounded-2xl shadow-md space-y-6">
@@ -62,18 +63,8 @@ export default function Filters() {
           Selected Color: {selectedColor || "None"}
         </p>
 
-        {/* Submit Button */}
-        <div className="mt-4">
-          <button
-            className="w-full bg-blue-400 text-white py-2 rounded-xl hover:bg-blue-700 transition"
-            onClick={() => {
-              console.log("Price:", price);
-              console.log("Color:", selectedColor);
-            }}
-          >
-            Apply Filters
-          </button>
-        </div>
+        
+       
       </div>
     </div>
   );

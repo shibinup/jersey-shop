@@ -49,11 +49,15 @@ export default function Navbar() {
                   </button>
                 </Link>
                 
-            <button className="text-gray-900 hover:text-blue-600 transition-colors">
+          <Link href={"/allproducts"}>
+
+                <button className="text-gray-900 hover:text-blue-600 transition-colors">
               <svg className="h-[22px] w-[22px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
             </button>
+          
+          </Link>
 
            {/*button for navigate in to profile*/}
           <Link href={"/profile"}>
