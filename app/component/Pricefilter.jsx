@@ -1,30 +1,50 @@
 "use client";
 
 import { useState ,useEffect ,useRef} from "react";
-import { useRouter,useSearchParams } from 'next/navigation'
+import { useRouter,useSearchParams,usePathname } from 'next/navigation'
 export default function Filters() {
 
 
-  const [price, setPrice] = useState(400);
-  const [selectedColor, setSelectedColor] = useState(null);
+  const [price, setPrice] = useState("");
+  const [selectedColor, setSelectedColor] = useState("");
 
   const colors = ["Blue", "White", "Yellow", "Black"];
   const router=useRouter()
   const searchParams = useSearchParams();
+  const pathname = usePathname();
   const mounted = useRef(false)
-   useEffect(() => {
-  if (!mounted.current) {
-    mounted.current = true;
-    return;
-  }
 
+
+  const handlechange = async (key,value)=>{
+  //taking url
+   const currentParams =   new URLSearchParams(searchParams.toString())
+   console.log("current param to tring  is ",currentParams)
+   if(value){
+      currentParams.set(key,value)
+      currentParams.toString()
+   }else{
+    currentParams.delete(key)
+   }
+   // had changed by by user 
+   let newurl;
+   if(currentParams.size>0){
+      newurl = `${pathname}?${currentParams.toString()}`
+   }else{
+    // when filter to zero
+    newurl= `${pathname}`
+   }
+   router.push(newurl)
+}
+  useEffect(() => {
+     const paramprice = searchParams.get("price")
+     setPrice(paramprice)
+       const paramcolor = searchParams.get("color")
+      setSelectedColor(paramcolor)
   
-  const params = new URLSearchParams(searchParams.toString());
-  params.set("price", `${price}`)
-  params.set("color",`${selectedColor}`);
-  router.replace(`?${params.toString()}`);
+}, [searchParams]);
+ 
+ // whenever any hange in url(price or color filter) do below function 
 
-}, [price, selectedColor]);
 
 
 
@@ -35,24 +55,22 @@ export default function Filters() {
       <div>
         <h2 className="text-xl font-bold mb-4">Filter by Price</h2>
 
-        <input
-          type="range"
-          min="200"
-          max="400"
-          step="50"
-        
-          value={price}
-          onChange={(e) => setPrice(Number(e.target.value))}
-          className="w-full"
-        />
+        <input 
+  type="number" // Changed from "range" to "number"
+  value={price||""} 
+  onChange={(e) => handlechange("price", e.target.value)} // Fixed extra parenthesis: (("price"... -> ("price"...
+  className="w-full border p-2" // Added styling for better visibility
+  placeholder="Enter price"
+/>
+
 
         <div className="flex justify-between text-sm text-gray-500 mt-2">
-          <span>₹200</span>
-          <span>₹400</span>
+          <span>₹100</span>
+          <span>₹500</span>
         </div>
 
         <p className="mt-3 text-lg font-semibold">
-          Selected Price: ₹{price}
+          Selected Price: ₹{price||"0"}
         </p>
       </div>
 
@@ -64,10 +82,10 @@ export default function Filters() {
           {colors.map((color) => (
             <button
               key={color}
-              onClick={() =>
-                setSelectedColor(selectedColor === color ? null : color)
-              
-              }
+                onClick={() => {
+                              const newValue = selectedColor === color ? "" : color;
+                                handlechange("color", newValue);
+                            }}
               className={`px-4 py-2 rounded-xl border font-medium transition
                 ${
                   selectedColor === color

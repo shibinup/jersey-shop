@@ -10,21 +10,11 @@ export default function Allproducts(){
     
     const searchParams = useSearchParams();
 
-  const price = searchParams.get('price');
-  const color = searchParams.get('color')
-  console.log({price,color})
+ 
 
-  useEffect(() => {
+
     // 1. Rename this local function
-    const fetchData = async () => {
-        // 2. This now correctly calls the browser's global fetch
-        const res = await fetch("/allproducts/api"); 
-        const data = await res.json();
-        console.log(data);
-    };
-
-    fetchData();
-}, []); // Emp
+    // Emp
     const[producs,setProducts] = useState(null)
 
     
@@ -34,7 +24,7 @@ export default function Allproducts(){
                 
                  im app product page
 
-                <Filters/>
+               <Filters/>
                 
             
 
