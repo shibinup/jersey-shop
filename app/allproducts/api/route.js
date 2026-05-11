@@ -1,20 +1,46 @@
 import { db } from "../../../lib/firebase";
-import { getDocs, collection } from "firebase/firestore";
+import { getDocs, collection, where, query } from "firebase/firestore";
 import { NextResponse } from "next/server";
 
-export async function GET() {
+export async function GET(request) {
+
+
+  
   console.log("called");
 
   try {
     console.log("try called");
 
+    const searchParams = request.nextUrl.searchParams;
+  console.log("searchhhahahahah",searchParams)
+
+    const price = searchParams.get("price");
+    const color = searchParams.get("color");
+
+    // 1. base collection
+    let q = collection(db, "products")
+    let conditions=[];
+
+         if (price) {
+      conditions.push(where("price", "<=", Number(price)));
+    }
+
+    if (color) {
+      conditions.push(where("color", "==", color));
+    }
+
+      const finalQuery =conditions.length > 0 ? query(q, ...conditions) : q;
+
+
+
+
     // firestore data fetch
-    const querySnapshot = await getDocs(
-      collection(db, "products")
-    );
+      // 4. fetch data
+    const snapshot = await getDocs(finalQuery);
+
 
     // convert docs to array
-    const products = querySnapshot.docs.map((doc) => ({
+    const products = snapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
     }));

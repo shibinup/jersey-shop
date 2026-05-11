@@ -6,7 +6,7 @@ import { useState ,useEffect} from "react";
 
 export default function SingleProduct({ params }) {
   const {user,loading} = useAuth() 
-  
+
   const[product,setProduct] = useState(null)
   
   useEffect(() => {
