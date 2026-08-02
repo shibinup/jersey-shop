@@ -1,4 +1,4 @@
-(# 🏆 Jersey Hub
+# 🏆 Jersey Hub
 
 A modern full-stack football jersey e-commerce website built with **Next.js** and **Firebase**. This project was created to learn and explore the capabilities of Next.js and Firebase while building a real-world application.
 
